@@ -20,7 +20,7 @@ refs.feedbackForm.addEventListener('input', throttle(onFeedbackFormInput, 500));
 // відстежуємо на формі подію input, і щоразу записуємо у локальне сховище об'єкт
 function onFeedbackFormInput(e) {
     formData[e.target.name] = e.target.value;
-    console.log(formData);
+    // console.log(formData);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 };
 
@@ -29,7 +29,6 @@ function fillTextarea() {
   let storedValue = localStorage.getItem(STORAGE_KEY);
     if (storedValue) {
         storedValue = JSON.parse(storedValue);
-        console.log(storedValue);
         Object.entries(storedValue).forEach(([name, value]) => {
             formData[name] = value;
             refs.feedbackForm.elements[name].value = value;
@@ -42,6 +41,7 @@ function onFeedbackFormSubmit(e) {
   e.preventDefault();
   e.target.reset();
   localStorage.removeItem(STORAGE_KEY);
+  console.log(formData);
 };
 
 
